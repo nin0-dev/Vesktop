@@ -87,6 +87,47 @@ function initTray(win: BrowserWindow) {
             }
         },
         {
+            type: "submenu",
+            label: "Set status",
+            submenu: [
+                {
+                    label: "Online",
+                    async click() {
+                        win.webContents.executeJavaScript(
+                            `Vencord.Api.UserSettings.getUserSetting("status", "status").updateSetting("online")`
+                        );
+                    }
+                },
+                {
+                    label: "Idle",
+                    async click() {
+                        win.webContents.executeJavaScript(
+                            `Vencord.Api.UserSettings.getUserSetting("status", "status").updateSetting("idle")`
+                        );
+                    }
+                },
+                {
+                    label: "Do Not Disturb",
+                    async click() {
+                        win.webContents.executeJavaScript(
+                            `Vencord.Api.UserSettings.getUserSetting("status", "status").updateSetting("dnd")`
+                        );
+                    }
+                },
+                {
+                    label: "Invisible",
+                    async click() {
+                        win.webContents.executeJavaScript(
+                            `Vencord.Api.UserSettings.getUserSetting("status", "status").updateSetting("invisible")`
+                        );
+                    }
+                }
+            ]
+        },
+        {
+            type: "separator"
+        },
+        {
             label: "About",
             click: createAboutWindow
         },
